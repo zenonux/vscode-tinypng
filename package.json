@@ -2,7 +2,7 @@
   "name": "vscode-tinypng",
   "displayName": "TinyPNG",
   "description": "TinyPNG压缩替换源文件，无数量限制",
-  "publisher": "换个头像心好累",
+  "publisher": "zenonux",
   "version": "0.1.0",
   "engines": {
     "vscode": "^1.62.0"
