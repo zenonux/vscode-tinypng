@@ -81,6 +81,14 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
+  "bugs": {
+    "url": "https://github.com/zenonux/vscode-tinypng/issues",
+    "email": "zenonux@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenonux/vscode-tinypng.git"
+  },
   "devDependencies": {
     "@types/vscode": "^1.62.0",
     "@types/glob": "^7.1.4",
