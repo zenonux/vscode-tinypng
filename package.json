@@ -1,14 +1,20 @@
 {
   "name": "vscode-tinypng",
-  "displayName": "vscode-tinypng",
-  "description": "vscode tinypng plugin",
-  "version": "0.0.1",
+  "displayName": "TinyPNG",
+  "description": "TinyPNG压缩替换源文件，无数量限制",
+  "publisher": "换个头像心好累",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.62.0"
   },
   "categories": [
     "Other"
   ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#404040",
+    "theme": "dark"
+  },
   "activationEvents": [
     "onCommand:vscode-tinypng.compressFile",
     "onCommand:vscode-tinypng.compressFolder"
