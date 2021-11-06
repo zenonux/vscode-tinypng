@@ -24,6 +24,47 @@
         "command": "vscode-tinypng.compressFolder",
         "title": "TinyPNG: Compress images in here"
       }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "vscode-tinypng.compressFile",
+          "when": "False"
+        },
+        {
+          "command": "vscode-tinypng.compressFolder",
+          "when": "False"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "resourceLangId == tinypng_file",
+          "command": "vscode-tinypng.compressFile",
+          "group": "1_modification"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceLangId == tinypng_file",
+          "command": "vscode-tinypng.compressFile",
+          "group": "1_modification"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "vscode-tinypng.compressFolder",
+          "group": "1_modification"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "id": "tinypng_file",
+        "extensions": [
+          ".png",
+          ".jpg",
+          ".jpeg"
+        ]
+      }
     ]
   },
   "scripts": {
