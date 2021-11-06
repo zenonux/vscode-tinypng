@@ -22,16 +22,16 @@ export function compress(imgEntryPath: string, done: (e?: string) => void) {
             return console.error('文件不存在！');
         }
         const stats = fs.statSync(filePath);
-        handleImgFile(stats.isFile(), stats.size, filePath);
-        done();
+        handleImgFile(stats.isFile(), stats.size, filePath,done);
     } catch (e: any) {
+        console.error(e);
         done(e);
     }
 }
 
-function handleImgFile(isFile: boolean, fileSize: number, file: string) {
+function handleImgFile(isFile: boolean, fileSize: number, file: string,done: (e?: string) => void) {
     if (isTinyImgFile(isFile, fileSize, file)) {
-        fileUpload(file);
+        fileUpload(file,done);
     } else {
         throw new Error('图片格式不正确！');
     }
@@ -76,7 +76,7 @@ function getRandomIP() {
         .join('.');
 }
 
-function fileUpload(imgPath: string) {
+function fileUpload(imgPath: string,done: (e?: string) => void) {
     let options: any = buildRequestParams();
     const req = https.request(options, res => {
         res.on('data', buffer => {
@@ -85,7 +85,7 @@ function fileUpload(imgPath: string) {
                 throw new Error(`压缩失败！\n 当前文件：${imgPath} \n ${postInfo.message}`);
             }
             else {
-                fileUpdate(imgPath, postInfo);
+                fileUpdate(imgPath, postInfo,done);
             }
         });
     });
@@ -102,7 +102,7 @@ async function fileUpdate(entryImgPath: string, info: {
     output: {
         url: string
     },
-}) {
+},done: (e?: string) => void) {
     const options = new URL(info.output.url);
     const req = https.request(options, res => {
         let body = '';
@@ -112,6 +112,8 @@ async function fileUpdate(entryImgPath: string, info: {
             fs.writeFile(entryImgPath, body, 'binary', err => {
                 if (err) {
                     throw new Error('更新压缩失败');
+                }else{
+                    done();
                 }
             });
         });

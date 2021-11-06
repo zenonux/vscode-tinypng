@@ -7,23 +7,26 @@ import { compress } from './tinypng';
  * @param {Object} file
  */
 const compressImage = (file: vscode.Uri) => {
-
-    const statusBarItem = vscode.window.createStatusBarItem(
-        vscode.StatusBarAlignment.Left
-    );
-    statusBarItem.text = `Compressing file ${file.fsPath}...`;
-    statusBarItem.show();
-    compress(file.fsPath, (e: string | undefined) => {
-        statusBarItem.hide();
-        if (e) {
-            vscode.window.showErrorMessage(e);
-        } else {
-            vscode.window.showInformationMessage(
-                `Successfully compressed ${file.fsPath}`
-            );
-        }
-
+    return new Promise((reslove) => {
+        const statusBarItem = vscode.window.createStatusBarItem(
+            vscode.StatusBarAlignment.Left
+        );
+        statusBarItem.text = `正在压缩${file.fsPath}...`;
+        statusBarItem.show();
+        compress(file.fsPath, (e: string | undefined) => {
+            statusBarItem.hide();
+            if (e) {
+                vscode.window.showErrorMessage(e);
+            } else {
+                vscode.window.showInformationMessage(
+                    `压缩成功！${file.fsPath}`
+                );
+            }
+            reslove(true);
+        });
     });
+
+
 };
 
 // this method is called when your extension is activated
@@ -35,15 +38,17 @@ export function activate(context: vscode.ExtensionContext) {
 
     let disposableCompressFolder: vscode.Disposable = vscode.commands.registerCommand(
         'vscode-tinypng.compressFolder',
-        (folder: vscode.Uri) => {
-            vscode.workspace
+        async (folder: vscode.Uri) => {
+            let files = await vscode.workspace
                 .findFiles(
                     new vscode.RelativePattern(
                         folder.path,
                         `**/*.{png,jpg,jpeg}`
                     )
-                )
-                .then((files: any) => files.forEach(compressImage));
+                );
+            for await (const file of files) {
+               await compressImage(file);
+            }
         }
     );
     context.subscriptions.push(disposableCompressFolder);
