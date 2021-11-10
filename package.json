@@ -29,11 +29,11 @@
       },
       {
         "command": "vscode-tinypng.compressFolder",
-        "title": "TinyPNG: Compress images in here"
+        "title": "TinyPNG: Compress folder"
       },
       {
         "command": "vscode-tinypng.compressFolderRecursive",
-        "title": "TinyPNG: Compress images recursively in here"
+        "title": "TinyPNG: Compress folders recursively"
       }
     ],
     "menus": {
