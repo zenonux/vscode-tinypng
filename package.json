@@ -17,7 +17,8 @@
   },
   "activationEvents": [
     "onCommand:vscode-tinypng.compressFile",
-    "onCommand:vscode-tinypng.compressFolder"
+    "onCommand:vscode-tinypng.compressFolder",
+    "onCommand:vscode-tinypng.compressFolderRecursive"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -29,6 +30,10 @@
       {
         "command": "vscode-tinypng.compressFolder",
         "title": "TinyPNG: Compress images in here"
+      },
+      {
+        "command": "vscode-tinypng.compressFolderRecursive",
+        "title": "TinyPNG: Compress images in here recursively"
       }
     ],
     "menus": {
@@ -39,6 +44,10 @@
         },
         {
           "command": "vscode-tinypng.compressFolder",
+          "when": "False"
+        },
+        {
+          "command": "vscode-tinypng.compressFolderRecursive",
           "when": "False"
         }
       ],
@@ -58,6 +67,11 @@
         {
           "when": "explorerResourceIsFolder",
           "command": "vscode-tinypng.compressFolder",
+          "group": "1_modification"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "vscode-tinypng.compressFolderRecursive",
           "group": "1_modification"
         }
       ]

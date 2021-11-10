@@ -1,48 +1,31 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import * as fs from 'fs';
-import * as path from 'path';
 import * as https from 'https';
 import { URL } from 'url';
-const conf = {
-    exts: ['.jpg', '.png', '.jpeg'],
-    max: 5000000,
-};
+import {isTinyImgFile} from './util';
 
-/**
- * @description 过滤待处理文件夹，得到待处理文件列表
- * @param {*} folder 待处理文件夹
- * @param {string} imgEntryPath 待处理文件列表
- * @return {*} void
- */
-export function compress(imgEntryPath: string, done: (e?: string) => void) {
+
+export function compress(filePath: string, done: (e?: string) => void) {
     try {
-        const filePath = path.join(imgEntryPath);
         if (!fs.existsSync(filePath)) {
             return console.error('文件不存在！');
         }
-        const stats = fs.statSync(filePath);
-        handleImgFile(stats.isFile(), stats.size, filePath,done);
+        handleImgFile(filePath,done);
     } catch (e: any) {
         console.error(e);
         done(e);
     }
 }
 
-function handleImgFile(isFile: boolean, fileSize: number, file: string,done: (e?: string) => void) {
-    if (isTinyImgFile(isFile, fileSize, file)) {
+function handleImgFile(file: string,done: (e?: string) => void) {
+    if (isTinyImgFile(file)) {
         fileUpload(file,done);
     } else {
         throw new Error('图片格式不正确！');
     }
 }
 
-// 过滤文件安全性/大小限制/后缀名
-function isTinyImgFile(isFile: boolean, fileSize: number, file: string) {
-    return isFile
-        && conf.exts.includes(path.extname(file))
-        && fileSize <= conf.max;
-}
 
 /**
  * 请求体
