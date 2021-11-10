@@ -1,9 +1,9 @@
 {
   "name": "vscode-tinypng",
   "displayName": "TinyPNG",
-  "description": "TinyPNG压缩替换源文件，无数量限制",
+  "description": "Use TinyPNG to compress images",
   "publisher": "zenonux",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.62.0"
   },

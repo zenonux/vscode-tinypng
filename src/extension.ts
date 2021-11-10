@@ -3,6 +3,10 @@
 import * as vscode from 'vscode';
 import { compress } from './tinypng';
 import { getImagesFromDirSync } from './util';
+
+//wait vscode upgrade node version 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 /**
  * Function to compress a single image.
  * @param {Object} file

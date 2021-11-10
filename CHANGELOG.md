@@ -1,9 +1,7 @@
-# Change Log
+# Changelog
 
-All notable changes to the "vscode-tinypng" extension will be documented in this file.
+## [0.2.0] (2021-11-10)
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+**New Features：**
 
-## [Unreleased]
-
-- Initial release
+- compress folder not recursively.
