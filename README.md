@@ -14,4 +14,4 @@ Inside the file explorer, use the entry in the context menu to compress a single
 
 ### Compression of folders
 
-As an addition to compress single files you can also compress all images inside a complete folder — including subfolders — aswell!
+Compress all images inside a complete folder. — including subfolders —
