@@ -11,7 +11,7 @@ const compressImage = (file: vscode.Uri) => {
         const statusBarItem = vscode.window.createStatusBarItem(
             vscode.StatusBarAlignment.Left
         );
-        statusBarItem.text = `正在压缩${file.fsPath}...`;
+        statusBarItem.text = `compressing ${file.fsPath}...`;
         statusBarItem.show();
         compress(file.fsPath, (e: string | undefined) => {
             statusBarItem.hide();
@@ -19,7 +19,7 @@ const compressImage = (file: vscode.Uri) => {
                 vscode.window.showErrorMessage(e);
             } else {
                 vscode.window.showInformationMessage(
-                    `压缩成功！${file.fsPath}`
+                    `compress ${file.fsPath} success`
                 );
             }
             reslove(true);
