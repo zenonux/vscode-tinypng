@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { Uri } from 'vscode';
 
 const conf = {
   exts: ['.jpg', '.png', '.jpeg'],
@@ -8,12 +9,16 @@ const conf = {
 
 export function getImagesFromDirSync(dirPath: string) {
   let fileList: string[] = [];
-  fs.readdirSync(dirPath).forEach((file) => {
-    const fullFilePath = path.join(dirPath, file);
+
+  let dirUri=Uri.file(dirPath);
+
+  fs.readdirSync(dirUri.fsPath).forEach((file) => {
+    const fullFilePath = path.join(dirUri.fsPath, file);
     if (isTinyImgFile(fullFilePath)) {
       fileList.push(fullFilePath);
     }
   });
+  console.log(3,fileList);
   return fileList;
 }
 
