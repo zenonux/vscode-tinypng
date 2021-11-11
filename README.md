@@ -8,14 +8,14 @@ This extension uses the API provided by[TinyPNG](https://tinypng.com) to compres
 
 ## Usage
 
-### Compress single files
+- Compress single files
 
 Inside the file explorer, use the entry in the context menu to compress a single file.
 
-### Compress folder
+- Compress folder
 
 Compress all images inside a complete folder.
 
-### Compress folders recursively
+- Compress folders recursively
 
 Compress all images inside a complete folder recursively. — including subfolders —
