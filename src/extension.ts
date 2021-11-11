@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       'vscode-tinypng.compressFolder',
       async (folder: vscode.Uri) => {
-        let files = getImagesFromDirSync(folder.path);
+        let files = getImagesFromDirSync(folder.fsPath);
         for await (const file of files) {
           await compressImage(file);
         }
