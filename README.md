@@ -14,8 +14,8 @@ Inside the file explorer, use the entry in the context menu to compress a single
 
 - Compress folder
 
-Compress all images inside a complete folder.
+Compress all images inside a folder.
 
 - Compress folders recursively
 
-Compress all images inside a complete folder recursively. — including subfolders —
+Compress all images inside a folder recursively. — including subfolders —
