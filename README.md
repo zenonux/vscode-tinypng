@@ -1,6 +1,6 @@
 # TinyPNG VSCode Extension
 
-This extension uses the API provided by[TinyPNG](https://tinypng.com) to compress your JP(E)G and PNG images directly inside VSCode!
+This extension uses the API provided by [TinyPNG](https://tinypng.com) to compress your JP(E)G and PNG images directly inside VSCode!
 
 ## Features
 
