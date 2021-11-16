@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2] (2021-11-16)
+
+**Optimize:**
+
+- show images count waiting for compress at status bar.
+
 ## [0.2.1] (2021-11-11)
 
 **Fixed bugs:**

@@ -4,24 +4,43 @@ import * as vscode from 'vscode';
 import { compress } from './tinypng';
 import { getImagesFromDirSync } from './util';
 
-//wait vscode upgrade node version 
+//wait vscode upgrade node version
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-/**
- * Function to compress a single image.
- * @param {Object} file
- */
 const compressImage = async (filePath: string) => {
   const statusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Left
   );
-  statusBarItem.text = `compressing ${filePath}...`;
+  statusBarItem.text = `compressing ${filePath}`;
   statusBarItem.show();
   let err = await compress(filePath);
   if (err) {
     vscode.window.showErrorMessage(err);
   } else {
     vscode.window.showInformationMessage(`compress ${filePath} success`);
+  }
+  statusBarItem.hide();
+};
+
+const compressImageList = async (files: string[]) => {
+  const statusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left
+  );
+  statusBarItem.show();
+  let notCompressCount = files.length;
+  for await (const file of files) {
+    statusBarItem.text = `compressing ${file}, ${
+      notCompressCount - 1 >= 0
+        ? notCompressCount - 1 + ' files waiting for compress.'
+        : ''
+    }`;
+    let err = await compress(file);
+    notCompressCount--;
+    if (err) {
+      vscode.window.showErrorMessage(err);
+    } else {
+      vscode.window.showInformationMessage(`compress ${file} success.`);
+    }
   }
   statusBarItem.hide();
 };
@@ -40,9 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
       'vscode-tinypng.compressFolder',
       async (folder: vscode.Uri) => {
         let files = getImagesFromDirSync(folder.fsPath);
-        for await (const file of files) {
-          await compressImage(file);
-        }
+        await compressImageList(files);
       }
     );
   context.subscriptions.push(disposableCompressFolder);
@@ -54,9 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
         let files = await vscode.workspace.findFiles(
           new vscode.RelativePattern(folder.path, `**/*.{png,jpg,jpeg}`)
         );
-        for await (const file of files) {
-          await compressImage(file.fsPath);
-        }
+        await compressImageList(files.map(val=> val.fsPath));
       }
     );
   context.subscriptions.push(disposableCompressFolderRecursive);
