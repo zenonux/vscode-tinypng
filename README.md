@@ -8,7 +8,7 @@ This extension uses the API provided by [TinyPNG](https://tinypng.com) to compre
 
 ## Usage
 
-- Compress single files
+- Compress single file
 
 Inside the file explorer, use the entry in the context menu to compress a single file.
 
