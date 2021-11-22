@@ -99,28 +99,6 @@
         }
       ]
     },
-    "configuration": {
-      "title": "vscode-tinypng",
-      "properties": {
-        "vscode-tinypng-oss.region": {
-          "type": "string",
-          "markdownDescription": "",
-          "default": ""
-        },
-        "vscode-tinypng-oss.accessKeyId": {
-          "type": "string",
-          "default": ""
-        },
-        "vscode-tinypng-oss.accessKeySecret": {
-          "type": "string",
-          "default": ""
-        },
-        "vscode-tinypng-oss.bucket": {
-          "type": "string",
-          "default": ""
-        }
-      }
-    },
     "languages": [
       {
         "id": "tinypng_file",
