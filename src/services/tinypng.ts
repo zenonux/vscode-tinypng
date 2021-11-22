@@ -3,7 +3,7 @@
 import * as fs from 'fs';
 import * as https from 'https';
 import { URL } from 'url';
-import { isTinyImgFile } from './util';
+import { isTinyImgFile } from '../util';
 
 interface PostInfo {
   error?: any
