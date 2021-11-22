@@ -23,24 +23,25 @@
     "onCommand:vscode-tinypng.compressFolderRecursive"
   ],
   "main": "./out/extension.js",
-  "viewsContainers": {
-    "activitybar": [
-      {
-        "id": "ossExplorer",
-        "title": "tinypng",
-        "icon": "images/logo.png"
-      }
-    ]
-  },
-  "views": {
-    "ossExplorer": [
-      {
-        "id": "ossTreeView",
-        "name": "oss"
-      }
-    ]
-  },
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ossExplorer",
+          "title": "tinypng",
+          "icon": "images/logo.png"
+        }
+      ]
+    },
+    "views": {
+      "ossExplorer": [
+        {
+          "id": "ossTreeView",
+          "name": "oss",
+          "when": "oss.enabled"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "vscode-tinypng.initOssConfig",

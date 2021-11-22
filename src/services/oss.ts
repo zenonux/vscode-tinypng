@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 export default class Oss {
   static async newConfig(basePath: string) {
-    const configPath = path.join(basePath, 'tinypng.json');
+    const configPath = path.join(basePath, '.vscode/tinypng.json');
     let exist = await fse.pathExists(configPath);
     if (exist) {
       await vscode.window.showTextDocument(vscode.Uri.file(configPath));
