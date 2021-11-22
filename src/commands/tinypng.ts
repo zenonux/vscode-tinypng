@@ -41,25 +41,15 @@ const compressImageList = async (files: string[]) => {
 };
 
 export const compressFile = (context: vscode.ExtensionContext) => {
-  let disposableCompressFile = vscode.commands.registerCommand(
+  let command = vscode.commands.registerCommand(
     'vscode-tinypng.compressFile',
     (file: vscode.Uri) => compressImage(file.fsPath)
   );
-  context.subscriptions.push(disposableCompressFile);
-
-  let disposableCompressFolder: vscode.Disposable =
-    vscode.commands.registerCommand(
-      'vscode-tinypng.compressFolder',
-      async (folder: vscode.Uri) => {
-        let files = getImagesFromDirSync(folder.fsPath);
-        await compressImageList(files);
-      }
-    );
-  context.subscriptions.push(disposableCompressFolder);
+  context.subscriptions.push(command);
 };
 
 export const compressFolder = (context: vscode.ExtensionContext) => {
-  let disposableCompressFolder: vscode.Disposable =
+  let command: vscode.Disposable =
     vscode.commands.registerCommand(
       'vscode-tinypng.compressFolder',
       async (folder: vscode.Uri) => {
@@ -67,11 +57,11 @@ export const compressFolder = (context: vscode.ExtensionContext) => {
         await compressImageList(files);
       }
     );
-  context.subscriptions.push(disposableCompressFolder);
+  context.subscriptions.push(command);
 };
 
 export const compressFolderRecursive = (context: vscode.ExtensionContext) => {
-  let disposableCompressFolderRecursive: vscode.Disposable =
+  let command: vscode.Disposable =
     vscode.commands.registerCommand(
       'vscode-tinypng.compressFolderRecursive',
       async (folder: vscode.Uri) => {
@@ -81,5 +71,5 @@ export const compressFolderRecursive = (context: vscode.ExtensionContext) => {
         await compressImageList(files.map((val) => val.fsPath));
       }
     );
-  context.subscriptions.push(disposableCompressFolderRecursive);
+  context.subscriptions.push(command);
 };
