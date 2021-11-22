@@ -11,7 +11,7 @@ export const initOssConfig = (context: vscode.ExtensionContext) => {
                   return;
             }
             if (workspaceFolders.length === 1) {
-                Oss.newConfig(workspaceFolders[0].uri.fsPath);
+               await Oss.newConfig(workspaceFolders[0].uri.fsPath);
                 return;
               }
         }
