@@ -28,8 +28,8 @@
       "activitybar": [
         {
           "id": "ossExplorer",
-          "title": "tinypng",
-          "icon": "images/logo.png"
+          "title": "Tinypng",
+          "icon": "images/icon.png"
         }
       ]
     },
@@ -37,8 +37,8 @@
       "ossExplorer": [
         {
           "id": "ossTreeView",
-          "name": "oss",
-          "when": "oss.enabled"
+          "name": "Oss",
+          "when": "tinypng-oss.enabled"
         }
       ]
     },
@@ -73,13 +73,6 @@
         {
           "command": "vscode-tinypng.compressFolderRecursive",
           "when": "False"
-        }
-      ],
-      "editor/title/context": [
-        {
-          "when": "resourceLangId == tinypng_file",
-          "command": "vscode-tinypng.compressFile",
-          "group": "1_modification"
         }
       ],
       "explorer/context": [

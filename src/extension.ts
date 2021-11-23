@@ -7,9 +7,14 @@ import { compressFile, compressFolder, compressFolderRecursive } from './command
 //wait vscode upgrade node version
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+
+  vscode.commands.executeCommand('setContext','tinypng-oss.enabled',true);
+
+
   compressFile(context);
   compressFolder(context);
   compressFolderRecursive(context);
