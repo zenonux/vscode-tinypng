@@ -3,7 +3,7 @@
   "displayName": "TinyPNG",
   "description": "Use TinyPNG to compress images",
   "publisher": "zenonux",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "engines": {
     "vscode": "^1.62.0"
   },

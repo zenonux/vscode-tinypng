@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from "fs";
+import * as path from "path";
 
 const conf = {
-  exts: ['.jpg', '.png', '.jpeg'],
+  exts: [".jpg", ".png", ".jpeg", "webp"],
   max: 5000000,
 };
 

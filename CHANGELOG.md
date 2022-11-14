@@ -1,19 +1,16 @@
 # Changelog
+## [0.2.3] (2022-11-14)
+
+- Support compress webp.
 
 ## [0.2.2] (2021-11-16)
 
-**Optimize:**
-
-- show images count waiting for compress at status bar.
+- Show images count waiting for compress at status bar.
 
 ## [0.2.1] (2021-11-11)
 
-**Fixed bugs:**
-
-- fix `Compress folder` can't read files.
+- Fix `Compress folder` can't read files.
 
 ## [0.2.0] (2021-11-10)
 
-**New Features：**
-
-- compress folder not recursively.
+- Compress folder not recursively.
