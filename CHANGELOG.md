@@ -1,5 +1,5 @@
 # Changelog
-## [0.2.3] (2022-11-14)
+## [0.2.4] (2022-11-14)
 
 - Support compress webp.
 
