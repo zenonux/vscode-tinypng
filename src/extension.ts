@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
       'vscode-tinypng.compressFolderRecursive',
       async (folder: vscode.Uri) => {
         let files = await vscode.workspace.findFiles(
-          new vscode.RelativePattern(folder.path, `**/*.{png,jpg,jpeg}`)
+          new vscode.RelativePattern(folder.path, `**/*.{png,jpg,jpeg,webp}`)
         );
         await compressImageList(files.map(val=> val.fsPath));
       }
