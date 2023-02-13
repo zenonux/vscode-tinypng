@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 const conf = {
-  exts: [".jpg", ".png", ".jpeg", "webp"],
+  exts: [".jpg", ".png", ".jpeg", ".webp"],
   max: 5000000,
 };
 
