@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import * as fs from 'fs';
-import * as https from 'https';
-import { URL } from 'url';
-import { isTinyImgFile } from './util';
+import * as fs from 'fs'
+import * as https from 'https'
+import { URL } from 'url'
+import { isTinyImgFile } from './util'
 
 interface PostInfo {
   error?: any
@@ -12,17 +12,17 @@ interface PostInfo {
   }
 }
 
-export async function compress(filePath: string):Promise<string | undefined> {
+export async function compress(filePath: string): Promise<string | undefined> {
   if (isTinyImgFile(filePath)) {
     try {
-      let postInfo = await fileUpload(filePath);
-      await fileUpdate(filePath, postInfo);
+      let postInfo = await fileUpload(filePath)
+      await fileUpdate(filePath, postInfo)
     } catch (e: any) {
-      console.error(e);
-      return 'compress image failed.';
+      console.error(e)
+      return 'compress image failed.'
     }
   } else {
-    return 'file is not valid.';
+    return 'file is not valid.'
   }
 }
 
@@ -35,7 +35,7 @@ function buildRequestParams() {
   return {
     method: 'POST',
     hostname: 'tinypng.com',
-    path: '/web/shrink',
+    path: '/backend/opt/shrink',
     headers: {
       rejectUnauthorized: false,
       'X-Forwarded-For': getRandomIP(),
@@ -45,7 +45,7 @@ function buildRequestParams() {
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 ' +
         '(KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
     },
-  };
+  }
 }
 
 /**
@@ -56,50 +56,50 @@ function getRandomIP() {
   return Array.from(Array(3))
     .map(() => parseInt(String(Math.random() * 255), 10))
     .concat([new Date().getTime() % 255])
-    .join('.');
+    .join('.')
 }
 
 async function fileUpload(imgPath: string): Promise<PostInfo> {
   return new Promise((resolve, reject) => {
-    let options: any = buildRequestParams();
+    let options: any = buildRequestParams()
     const req = https.request(options, (res) => {
       res.on('data', (buffer) => {
-        const postInfo = JSON.parse(buffer.toString());
+        const postInfo = JSON.parse(buffer.toString())
         if (postInfo.error) {
-          reject(postInfo.error);
+          reject(postInfo.error)
         } else {
-          resolve(postInfo);
+          resolve(postInfo)
         }
-      });
-    });
-    req.write(fs.readFileSync(imgPath), 'binary');
+      })
+    })
+    req.write(fs.readFileSync(imgPath), 'binary')
     req.on('error', (e) => {
-      reject(e);
-    });
-    req.end();
-  });
+      reject(e)
+    })
+    req.end()
+  })
 }
 
 async function fileUpdate(entryImgPath: string, info: PostInfo): Promise<void> {
   return new Promise((resolve, reject) => {
-    const options = new URL(info.output.url);
+    const options = new URL(info.output.url)
     const req = https.request(options, (res) => {
-      let body = '';
-      res.setEncoding('binary');
-      res.on('data', (data) => (body += data));
+      let body = ''
+      res.setEncoding('binary')
+      res.on('data', (data) => (body += data))
       res.on('end', () => {
         fs.writeFile(entryImgPath, body, 'binary', (err) => {
           if (err) {
-            reject(err);
+            reject(err)
           } else {
-            resolve();
+            resolve()
           }
-        });
-      });
-    });
+        })
+      })
+    })
     req.on('error', (e) => {
-      reject(e);
-    });
-    req.end();
-  });
+      reject(e)
+    })
+    req.end()
+  })
 }
